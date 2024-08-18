@@ -153,25 +153,20 @@ game.redraw = function () {
   // Draw the player
   game.drawPlayer();
 
-  let highScore = localStorage.getItem("highScore") || 0;
-
-  if (
-    Math.round(-game.player.highestY / (3 * game.options.tileHeight)) >
-    highScore
-  ) {
-    highScore = Math.round(
-      -game.player.highestY / (3 * game.options.tileHeight),
-    );
-    localStorage.setItem("highScore", highScore);
-  }
-
-  (game.counter.innerHTML =
-    "A game by Karol Swierczek | Controls: A, D / arrows and SPACE | Points: " +
-    Math.round(-game.player.highestY / (3 * game.options.tileHeight)) +
-    " High Score:" +
-    highScore),
+  // Draw the points
+  (game.points = Math.round(
+    -game.player.highestY / (3 * game.options.tileHeight),
+  )),
     game.canvas.width - 50,
     game.canvas.height - 12;
+  game.counter.innerHTML = "Points: " + game.points;
+  var highestScore = game.getCookie("highestScore");
+  highestScore = highestScore ? parseInt(highestScore, 10) : 0;
+  if (game.points > highestScore) {
+    highestScore = game.points;
+    game.setCookie("highestScore", highestScore, 365);
+  }
+  game.highestScoreElement.innerHTML = "Highest Score: " + highestScore;
 };
 
 game.requestRedraw = function () {

@@ -37,14 +37,34 @@ canvas {
   height: 100%;
   position: relative;
 }
+.instruction {
+  font-family: "superscript", Arial, sans-serif;
+  font-size: 22px;
+  color: white;
+  position: absolute;
+  bottom: 0;
+  left: 20px;
+  text-align: center;
+  z-index: 2;
+}
 
 .counter {
   font-family: "superscript", Arial, sans-serif;
-  font-size: 22px;
-  color: black;
+  font-size: 25px;
+  color: white;
   position: absolute;
-  bottom: 0;
-  right: 20px;
+  top: 50px;
+  right: 50px;
+  text-align: center;
+  z-index: 2;
+}
+.highestScore {
+  font-family: "superscript", Arial, sans-serif;
+  font-size: 25px;
+  color: white;
+  position: absolute;
+  top: 70px;
+  right: 50px;
   text-align: center;
   z-index: 2;
 }
