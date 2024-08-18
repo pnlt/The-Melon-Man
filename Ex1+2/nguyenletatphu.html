@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: white;
+      }
+    </style>
+    <title>Mouse Drawing</title>
+  </head>
+  <body>
+    <canvas id="myCanvas" width="300" height="300"></canvas>
+    <script>
+      const canvas = document.getElementById("myCanvas");
+      const ctx = canvas.getContext("2d");
+
+      function drawMouse() {
+        // pale yellow background
+        ctx.fillStyle = "#FDFD96";
+        ctx.fillRect(0, 0, 300, 300);
+
+        // Head (triangle)
+        ctx.fillStyle = "limegreen";
+        ctx.beginPath();
+        ctx.moveTo(50, 75);
+        ctx.lineTo(240, 75);
+        ctx.lineTo(150, 250);
+        ctx.closePath();
+        ctx.fill();
+
+        // left ear
+        ctx.beginPath();
+        ctx.arc(80, 80, 40, 0, Math.PI * 2);
+        ctx.fill();
+
+        // right ear
+        ctx.beginPath();
+        ctx.arc(220, 80, 40, 0, Math.PI * 2);
+        ctx.fill();
+        // Pink circle inside left ear
+        ctx.fillStyle = "pink";
+        ctx.beginPath();
+        ctx.arc(80, 80, 20, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Pink circle inside right ear
+        ctx.beginPath();
+        ctx.arc(220, 80, 20, 0, Math.PI * 2);
+        ctx.fill();
+
+        // left eye
+        ctx.fillStyle = "white";
+        ctx.beginPath();
+        ctx.arc(120, 140, 12, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = "black";
+        ctx.beginPath();
+        ctx.arc(121, 142, 7, 0, Math.PI * 2);
+        ctx.fill();
+
+        // right eye
+        ctx.fillStyle = "white";
+        ctx.beginPath();
+        ctx.arc(180, 140, 12, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = "black";
+        ctx.beginPath();
+        ctx.arc(177, 143, 7, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Nose
+        ctx.fillStyle = "pink";
+        ctx.beginPath();
+        ctx.arc(150, 230, 20, 0, Math.PI * 2);
+        ctx.fill();
+
+        // beard
+        ctx.strokeStyle = "red";
+        ctx.lineWidth = 3;
+        // left beard
+        ctx.beginPath();
+        ctx.moveTo(140, 230);
+        ctx.lineTo(70, 210);
+        ctx.moveTo(140, 230);
+        ctx.lineTo(70, 230);
+        ctx.moveTo(140, 230);
+        ctx.lineTo(70, 250);
+        ctx.stroke();
+        // right beard
+        ctx.beginPath();
+        ctx.moveTo(160, 230);
+        ctx.lineTo(230, 210);
+        ctx.moveTo(160, 230);
+        ctx.lineTo(230, 230);
+        ctx.moveTo(160, 230);
+        ctx.lineTo(230, 250);
+        ctx.stroke();
+      }
+
+      drawMouse();
+    </script>
+  </body>
+</html>
