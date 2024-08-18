@@ -1,8 +1,12 @@
 // Functions responsible for keyboard events handling
 game.moveLeft = function () {
-  game.player.direction = "left";
   game.clearMoveIntervals();
+  game.player.lastDirection = "left";
   game.player.moveLeftInterval = setInterval(function () {
+    if (game.player.direction == "idle") {
+      game.player.direction = "left";
+      game.player.animationFrameNumber = 0;
+    }
     for (var i = 1; i < 120; i++) {
       setTimeout(function () {
         // Player can't move faster if there's friction from the ground
@@ -23,9 +27,13 @@ game.moveLeft = function () {
 };
 
 game.moveRight = function () {
-  game.player.direction = "right";
   game.clearMoveIntervals();
+  game.player.lastDirection = "right";
   game.player.moveRightInterval = setInterval(function () {
+    if (game.player.direction == "idle") {
+      game.player.direction = "right";
+      game.player.animationFrameNumber = 0;
+    }
     for (var i = 1; i < 120; i++) {
       setTimeout(
         function () {
@@ -77,10 +85,21 @@ game.keyup = function (event) {
     case 65:
     case 37:
       clearInterval(game.player.moveLeftInterval);
+      game.player.direction = "idle";
       break;
     case 68:
     case 39:
       clearInterval(game.player.moveRightInterval);
+      game.player.direction = "idle";
       break;
   }
 };
+
+function loopAnimationIdle() {
+  if (game.player.direction == "idle") {
+    game.player.animationFrameNumber++;
+    game.requestRedraw();
+  }
+}
+
+setInterval(loopAnimationIdle, 160);
